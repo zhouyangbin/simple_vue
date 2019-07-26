@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+    <button type={{age}} on:click="reverseMessage">{{ age }}</button>
+    <input type="text"  value="{{age}}" on:change="abac" />
+  </div>
+  <div id="acc"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
+<script src="vue.js"></script>
+<script src="observer.js"></script>
+<script src="compile.js"></script>
+<script src="watcher.js"></script>
+<script src="dep.js"></script>
+
+<script>
+const vm = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!',
+    age :17,
+    button:"逆转消息"
+  },
+   beforeCreate(){
+            // 创建之前;无法获取响应数据
+            console.log("beforeCreate");
+    },
+    created() {
+      console.log("%c%s", "color:red","el     : " + this.$el); //undefined
+      console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化 
+      console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+    },
+    methods: {
+    reverseMessage: function () {
+      this.data.message = "1234"
+    },
+    abac:function (e) {
+      this.data.age = e.target.value
+      console.log(e.target.value,"???")
+    },
+  },
+  mounted: function() {
+    console.log(123)
+  },
+});
+</script>
+
+</html>
